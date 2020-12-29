@@ -44,6 +44,11 @@ function calculateResults(){
 }
 
 function showError(error){
+    document.getElementById('results').style.display = 'none';
+
+    //hide spinner
+    document.getElementById('loading').style.display = 'none';
+
     const errorDiv = document.createElement('div');
 
     const card = document.querySelector('.card');

@@ -30,19 +30,43 @@ maxNum.textContent = max;
 
      //check if won
      if(guess === winningNum){
-         guessInput.disabled = true;
 
-         //change border color
-        guessInput.style.borderColor = 'green';
 
-        setMessage(`${winningNum} is correct, YOU WIN! `, 'green');
+        gameOver(true ,`${winningNum} is correct, YOU WIN! `);
 
      } else {
 
+        //Wrong number 
+        guessesLeft -= 1;
+
+        if(guessesLeft  === 0){
+            gameOver(false ,`Game over , you lost,The correct number was ${winningNum} `);
+
+
+        } else{
+       
+            guessInput.style.borderColor = 'red';
+
+            guessInput.value('');
+
+            setMessage(`${guess} is not correct , ${guessesLeft} guesses left`,'red');
+                
+        }
      }
-
-
  });
+
+ function gameOver(won,msg){
+    let color;
+    won === true ? color = 'green' : 'red';
+
+    guessInput.disabled = true;
+
+    guessInput.style.borderColor = color;
+
+    message.style.color = color;
+
+   setMessage(msg);
+ }
 
  function setMessage(msg,color){
      message.style.color = color;
